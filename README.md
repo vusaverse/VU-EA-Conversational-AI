@@ -92,6 +92,26 @@ Linux**. Dat bestand downloaden en dubbelklikken is de hele instructie. De start
 | Code ophalen | Clonet de repository, of werkt een bestaande kopie bij. |
 | Starten | Maakt de virtual environment en draait `python main.py`, dat de dependencies installeert, de modellen ophaalt, de index bouwt en je browser opent. |
 
+#### Ontwikkelstatus onderaan de pagina
+
+Onder de voettekst staat een dichtgeklapt paneel **Ontwikkelstatus** — voor wie aan het project werkt, niet
+voor wie de app wil starten. Openklappen laat drie dingen zien:
+
+| Regel | Wat er staat |
+|-------|--------------|
+| Laatste merge | Nummer, titel, wie hem mergede en wanneer — met een link naar de pull request |
+| main | De huidige commit op `main`, met de eerste regel van het commitbericht |
+| Deze site | De commit die GitHub Pages heeft gepubliceerd, en of dat gelijk is aan `main` of hoeveel commits erachter |
+
+**Het haalt pas iets op als je het openklapt.** De GitHub-API staat niet-ingelogde verzoeken 60 keer per uur
+per IP toe, en op een universiteitsnetwerk deelt een heel gebouw dat ene adres. Een gewone bezoeker hoort dat
+budget niet op te maken voor een paneel dat hij nooit opent. Binnen dezelfde sessie komt een tweede blik uit
+`sessionStorage`, dus herladen kost niets extra.
+
+Loopt het mis, dan zegt het paneel wat er mis is in plaats van leeg te blijven: bij een bereikte API-limiet
+staat dat er met de reden, en geeft GitHub geen deployment vrij voor deze pagina, dan zegt het dat de live
+commit van buitenaf niet vast te stellen is — liever dat dan een bewering die niet klopt.
+
 Wie liever plakt dan klikt, vindt op dezelfde pagina één commando:
 
 ```powershell
@@ -159,6 +179,11 @@ ook niet met deze repository.
 Dat is meteen het antwoord op kantoornetwerken die verkeer tussen apparaten blokkeren. Op eduroam krijgt een
 laptop een publiek adres (`130.37.x.x`) en staat clientisolatie aan: je telefoon kan de laptop niet bereiken,
 hoe goed de firewall ook staat. Deze route heeft de laptop niet nodig, dus er valt niets te blokkeren.
+
+Bovenaan staat **← Startpagina**, terug naar de installatiepagina. Die link is relatief (`href="./"`), dus
+hij volgt vanzelf de plek waar de pagina staat — onder welke GitHub-eigenaar dan ook, op een eigen server of
+vanaf `file://`. De startpagina zit ook in de offline-cache: een terugknop die alleen mét netwerk werkt is
+precies verkeerd om voor een app die juist voor de situatie zónder netwerk bestaat.
 
 Verwante velden zijn aantikbaar: een verwijzing in de documentatie brengt je naar dat veld, wat op een
 telefoon een stuk prettiger is dan een naam overtypen.
